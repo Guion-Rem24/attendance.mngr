@@ -1,4 +1,4 @@
-package shift1;
+package info.serchman;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -24,7 +24,7 @@ public class MonthView1 extends HttpServlet{
         sb.append("<head>");
         sb.append("<meta http-equiv=\"Content-Type\" Content=\"text/html;charset=Shift_JIS\">");
 
-        sb.append("<title>シフト管理</title>");
+        sb.append("<title>Work Management</title>");
 
         sb.append("<style>");
         sb.append("table{border:1px solid #a9a9a9;width:90%;padding:0px;margin:0px;border-collapse:collapse;}");
