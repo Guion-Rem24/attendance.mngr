@@ -4,6 +4,9 @@ https://qiita.com/shimatter/items/c69ffd67a8ae4390b94f
 
 Eclipse install
 https://qiita.com/yacchi1123/items/31c5ced9700b7c109c03
+Eclipse JDBC設定
+https://qiita.com/sat0suu/items/b50f0fff1fd087dd19c2
+https://qiita.com/nobuya_osako/items/c8bd67d72d2d6b5e1f20
 
 TomCat
 https://qiita.com/R1ck29/items/9729b0b2abb9020c31eb
