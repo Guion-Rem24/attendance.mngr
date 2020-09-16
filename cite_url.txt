@@ -9,3 +9,7 @@ TomCat
 https://qiita.com/R1ck29/items/9729b0b2abb9020c31eb
 Eclipse用 Tomcat plugin
 https://qiita.com/sat0suu/items/b50f0fff1fd087dd19c2
+
+模倣DB
+https://optimal-sdw.com/blog/code-java/article_91
+https://hazm.at/mox/platform/fusion-tables/client-for-java.html
