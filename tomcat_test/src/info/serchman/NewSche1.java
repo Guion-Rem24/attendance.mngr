@@ -1,4 +1,4 @@
-package info.searchman;
+package info.serchman;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -123,7 +123,7 @@ public class NewSche1 extends HttpServlet{
         sb.append("<td nowrap>日付</td>");
         sb.append("<td>");
         sb.append("<select name=\"YEAR\">");
-        for (int i = 2019 ; i <= 2025 ; i++){
+        for (int i = 2019 ; i <= 2030 ; i++){
             sb.append("<option value=\"");
             sb.append(i);
             sb.append("\"");
