@@ -40,7 +40,7 @@ public class MonthView1 extends HttpServlet{
         sb.append("</head>");
         sb.append("<body>");
 
-        sb.append("<p>2020年10月</p>");
+        sb.append("<p>2020年09月</p>");
 
         sb.append("<table>");
 
