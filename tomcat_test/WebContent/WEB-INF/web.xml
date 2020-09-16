@@ -27,12 +27,22 @@
 
     <servlet>
     <servlet-name>NewSche</servlet-name>
-    <servlet-class>info.serchman.NewSche2</servlet-class>
+    <servlet-class>info.serchman.NewSche3</servlet-class>
   </servlet>
 
   <servlet-mapping>
     <servlet-name>NewSche</servlet-name>
     <url-pattern>/servlet/NewSche</url-pattern>
+  </servlet-mapping>
+
+    <servlet>
+    <servlet-name>ScheduleInsert</servlet-name>
+    <servlet-class>info.serchman.ScheduleInsert1</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>ScheduleInsert</servlet-name>
+    <url-pattern>/servlet/ScheduleInsert</url-pattern>
   </servlet-mapping>
 
 </web-app>
