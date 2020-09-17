@@ -17,7 +17,7 @@
 
    <servlet>
     <servlet-name>MonthView</servlet-name>
-    <servlet-class>info.serchman.MonthView4</servlet-class>
+    <servlet-class>info.serchman.MonthView5</servlet-class>
   </servlet>
 
   <servlet-mapping>
@@ -27,7 +27,7 @@
 
     <servlet>
     <servlet-name>NewSche</servlet-name>
-    <servlet-class>info.serchman.NewSche3</servlet-class>
+    <servlet-class>info.serchman.NewSche4</servlet-class>
   </servlet>
 
   <servlet-mapping>

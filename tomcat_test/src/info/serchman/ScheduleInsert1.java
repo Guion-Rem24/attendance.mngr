@@ -145,12 +145,12 @@ public class ScheduleInsert1 extends HttpServlet{
         }
 
         Connection conn = null;
-        String url = "jdbc:mysql://localhost:3306?characterEncoding=UTF-8&serverTimezone=JST";
+        String url = "jdbc:mysql://localhost:3306/app2020916?characterEncoding=UTF-8&serverTimezone=JST";
         String user = "root";
-        String password = "gintamaforever2020";
+        String password = "gintamafoever2020";
 
         try {
-            Class.forName("com.mysql.jdbc.Driver").newInstance();
+            Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
             conn = DriverManager.getConnection(url, user, password);
 
             String sql = "insert into schedule (userid, scheduledate, starttime, endtime, schedule, schedulememo) values (?, ?, ?, ?, ?, ?)";
