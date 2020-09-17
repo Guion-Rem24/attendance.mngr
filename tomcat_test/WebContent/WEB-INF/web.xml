@@ -75,4 +75,24 @@
     <url-pattern>/servlet/ScheUpdate</url-pattern>
   </servlet-mapping>
 
+    <servlet>
+    <servlet-name>DeleteCheck</servlet-name>
+    <servlet-class>info.serchman.DeleteCheck1</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>DeleteCheck</servlet-name>
+    <url-pattern>/servlet/DeleteCheck</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>ScheDelete</servlet-name>
+    <servlet-class>info.serchman.ScheDelete1</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>ScheDelete</servlet-name>
+    <url-pattern>/servlet/ScheDelete</url-pattern>
+  </servlet-mapping>
+
 </web-app>
