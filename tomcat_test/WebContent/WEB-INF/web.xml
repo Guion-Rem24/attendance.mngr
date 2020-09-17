@@ -17,7 +17,7 @@
 
    <servlet>
     <servlet-name>MonthView</servlet-name>
-    <servlet-class>info.serchman.MonthView5</servlet-class>
+    <servlet-class>info.serchman.MonthView6</servlet-class>
   </servlet>
 
   <servlet-mapping>
@@ -43,6 +43,16 @@
   <servlet-mapping>
     <servlet-name>ScheduleInsert</servlet-name>
     <url-pattern>/servlet/ScheduleInsert</url-pattern>
+  </servlet-mapping>
+
+    <servlet>
+    <servlet-name>ScheView</servlet-name>
+    <servlet-class>info.serchman.ScheView1</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>ScheView</servlet-name>
+    <url-pattern>/servlet/ScheView</url-pattern>
   </servlet-mapping>
 
 </web-app>
