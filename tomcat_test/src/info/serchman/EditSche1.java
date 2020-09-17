@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class ScheView1 extends HttpServlet{
+public class EditSche1 extends HttpServlet{
 
     protected Connection conn = null;
 
@@ -113,7 +113,7 @@ public class ScheView1 extends HttpServlet{
         sb.append("<head>");
         sb.append("<meta http-equiv=\"Content-Type\" Content=\"text/html;charset=Shift_JIS\">");
 
-        sb.append("<title>スケジュール登録</title>");
+        sb.append("<title>スケジュール変更</title>");
 
         sb.append("<style>");
         sb.append("table.sche{border:1px solid #a9a9a9;padding:0px;margin:0px;border-collapse:collapse;}");
@@ -140,13 +140,10 @@ public class ScheView1 extends HttpServlet{
         sb.append("<body>");
 
         sb.append("<p>");
-        sb.append("既存スケジュール確認&nbsp;&nbsp;");
-        sb.append("[<a href=\"/tomcat_test/servlet/MonthView");
-        sb.append("?YEAR=");
-        sb.append(year);
-        sb.append("&MONTH=");
-        sb.append(month);
-        sb.append("\">カレンダーへ戻る</a>]");
+        sb.append("スケジュールの変更&nbsp;&nbsp;");
+        sb.append("[<a href=\"/tomcat_test/servlet/ScheView?ID=");
+        sb.append(currentscheduleid);
+        sb.append("\">スケジュール表示に戻る</a>]");
         sb.append("</p>");
 
         String[] scheduleArray = new String[49];
@@ -293,42 +290,186 @@ public class ScheView1 extends HttpServlet{
 
         sb.append("<div id=\"right\">");
 
-        sb.append("<table class=\"view\">");
-        sb.append("<tr><td class=\"left\">日付</td><td>");
-        sb.append(year);
-        sb.append("年");
-        sb.append(month + 1);
-        sb.append("月");
-        sb.append(day);
-        sb.append("日");
-        sb.append("</td></tr>");
-        sb.append("<tr><td class=\"left\">時間</td><td>");
-        if (currentStartTime == null){
-            sb.append("未定");
-        }else{
-            sb.append(currentStartTime.substring(0, 5));
-            sb.append(" - ");
-            sb.append(currentEndTime.substring(0, 5));
+        sb.append("<form method=\"post\" action=\"/tomcat_test/servlet/ScheUpdate\">");
+        sb.append("<table>");
+        sb.append("<tr>");
+
+        sb.append("<td nowrap>日付</td>");
+        sb.append("<td>");
+        sb.append("<select name=\"YEAR\">");
+        for (int i = 2005 ; i <= 2010 ; i++){
+            sb.append("<option value=\"");
+            sb.append(i);
+            sb.append("\"");
+            if (i == year){
+                sb.append(" selected");
+            }
+            sb.append(">");
+            sb.append(i);
+            sb.append("年");
         }
-        sb.append("</td></tr>");
-        sb.append("<tr><td class=\"left\">スケジュール</td><td>");
+        sb.append("</select> ");
+
+        sb.append("<select name=\"MONTH\">");
+        for (int i = 1 ; i <= 12 ; i++){
+            sb.append("<option value=\"");
+            sb.append(i);
+            sb.append("\"");
+            if (i == (month + 1)){
+                sb.append(" selected");
+            }
+            sb.append(">");
+            sb.append(i);
+            sb.append("月");
+        }
+        sb.append("</select> ");
+
+        sb.append("<select name=\"DAY\">");
+        int monthLastDay = getMonthLastDay(year, month, day);
+        for (int i = 1 ; i <= monthLastDay ; i++){
+            sb.append("<option value=\"");
+            sb.append(i);
+            sb.append("\"");
+            if (i == day){
+                sb.append(" selected");
+            }
+            sb.append(">");
+            sb.append(i);
+            sb.append("日");
+        }
+        sb.append("</select>");
+
+        sb.append("</td>");
+        sb.append("</tr>");
+
+        sb.append("<tr>");
+        sb.append("<td nowrap>時刻</td>");
+        sb.append("<td>");
+        sb.append("<select name=\"SHOUR\">");
+        if (currentStartTime == null){
+            sb.append("<option value=\"\" selected>--時");
+            for (int i = 0 ; i <= 23 ; i++){
+                sb.append("<option value=\"");
+                sb.append(i);
+                sb.append("\">");
+                sb.append(i);
+                sb.append("時");
+            }
+        }else{
+            sb.append("<option value=\"\">--時");
+
+            int shour = Integer.parseInt(currentStartTime.substring(0, 2));
+
+            for (int i = 0 ; i <= 23 ; i++){
+                sb.append("<option value=\"");
+                sb.append(i);
+                sb.append("\"");
+
+                if (i == shour){
+                    sb.append(" selected");
+                }
+
+                sb.append(">");
+                sb.append(i);
+                sb.append("時");
+            }
+        }
+        sb.append("</select> ");
+
+        sb.append("<select name=\"SMINUTE\">");
+        if (currentStartTime == null){
+            sb.append("<option value=\"0\" selected>00分");
+            sb.append("<option value=\"30\">30分");
+        }else{
+            String sminute = currentStartTime.substring(3, 5);
+            if (sminute.equals("00")){
+                sb.append("<option value=\"0\" selected>00分");
+                sb.append("<option value=\"30\">30分");
+            }else{
+                sb.append("<option value=\"0\">00分");
+                sb.append("<option value=\"30\" selected>30分");
+            }
+        }
+        sb.append("</select>");
+
+        sb.append(" -- ");
+
+        sb.append("<select name=\"EHOUR\">");
+        if (currentEndTime == null){
+            sb.append("<option value=\"\" selected>--時");
+            for (int i = 0 ; i <= 23 ; i++){
+                sb.append("<option value=\"");
+                sb.append(i);
+                sb.append("\">");
+                sb.append(i);
+                sb.append("時");
+            }
+        }else{
+            sb.append("<option value=\"\">--時");
+
+            int ehour = Integer.parseInt(currentEndTime.substring(0, 2));
+
+            for (int i = 0 ; i <= 23 ; i++){
+                sb.append("<option value=\"");
+                sb.append(i);
+                sb.append("\"");
+
+                if (i == ehour){
+                    sb.append(" selected");
+                }
+
+                sb.append(">");
+                sb.append(i);
+                sb.append("時");
+            }
+        }
+        sb.append("</select> ");
+
+        sb.append("<select name=\"EMINUTE\">");
+        if (currentEndTime == null){
+            sb.append("<option value=\"0\" selected>00分");
+            sb.append("<option value=\"30\">30分");
+        }else{
+            String eminute = currentEndTime.substring(3, 5);
+            if (eminute.equals("00")){
+                sb.append("<option value=\"0\" selected>00分");
+                sb.append("<option value=\"30\">30分");
+            }else{
+                sb.append("<option value=\"0\">00分");
+                sb.append("<option value=\"30\" selected>30分");
+            }
+        }
+        sb.append("</select>");
+
+        sb.append("</td>");
+        sb.append("</tr>");
+
+        sb.append("<tr>");
+        sb.append("<td nowrap>予定</td>");
+        sb.append("<td><input type=\"text\" name=\"PLAN\" value=\"");
         sb.append(currentSchedule);
-        sb.append("</td></tr>");
-        sb.append("<tr><td class=\"left\" style=\"height:150px;\">メモ</td><td>");
-        currentMemo = currentMemo.replaceAll("\r\n", "<br>");
+        sb.append("\" size=\"30\" maxlength=\"100\">");
+        sb.append("</td>");
+        sb.append("</tr>");
+
+        sb.append("<tr>");
+        sb.append("<td valign=\"top\" nowrap>メモ</td>");
+        sb.append("<td><textarea name=\"MEMO\" cols=\"30\" rows=\"10\" wrap=\"virtual\">");
         sb.append(currentMemo);
-        sb.append("</td></tr>");
+        sb.append("</textarea></td>");
+        sb.append("</tr>");
         sb.append("</table>");
 
         sb.append("<p>");
-        sb.append("[<a href=\"/tomcat_test/servlet/EditSche?ID=");
+
+        /* 変更するスケジュールの「ID」を隠し項目として設定 */
+        sb.append("<input type=\"hidden\" name=\"ID\" value=\"");
         sb.append(currentscheduleid);
-        sb.append("\">スケジュールの変更</a>]");
-        sb.append("&nbsp;&nbsp;");
-        sb.append("[<a href=\"/tomcat_test/servlet/DeleteCheck?ID=");
-        sb.append(currentscheduleid);
-        sb.append("\">スケジュールの削除</a>]");
-        sb.append("</p>");
+        sb.append("\">");
+
+sb.append("<input type=\"submit\" name=\"Register\" value=\"変更する\">");
+        sb.append("<p>");
+        sb.append("</form>");
 
         sb.append("</div>");
         sb.append("</div>");

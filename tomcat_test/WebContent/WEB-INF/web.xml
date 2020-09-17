@@ -55,4 +55,24 @@
     <url-pattern>/servlet/ScheView</url-pattern>
   </servlet-mapping>
 
+    <servlet>
+    <servlet-name>EditSche</servlet-name>
+    <servlet-class>info.serchman.EditSche1</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>EditSche</servlet-name>
+    <url-pattern>/servlet/EditSche</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>ScheUpdate</servlet-name>
+    <servlet-class>info.serchman.ScheUpdate1</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>ScheUpdate</servlet-name>
+    <url-pattern>/servlet/ScheUpdate</url-pattern>
+  </servlet-mapping>
+
 </web-app>
